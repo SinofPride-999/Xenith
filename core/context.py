@@ -1,5 +1,8 @@
 #######################################
-# CONTEXT
+# EXECUTION CONTEXT MODULE
+# Represents a execution scope with its symbol table and parent context.
+# Enables lexical scoping and proper variable resolution during
+# function calls and block execution.
 #######################################
 
 class Context:
