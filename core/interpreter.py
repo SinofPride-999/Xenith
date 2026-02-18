@@ -254,8 +254,13 @@ class Interpreter:
             if res.should_return():
                 return res
 
-        # Pass self (the interpreter) to the execute method
-        return_value = res.register(value_to_call.execute(args, self))  # CHANGED: added self
+        # Check if it's a bult-in function or regular function
+        if hasattr(value_to_call, 'execute'):
+            # Pass self (interpreter) as the second argument
+            return_value = res.register(value_to_call.execute(args, self))
+        else:
+            return_value = res.register(value_to_call.execute(args))
+
         if res.should_return():
             return res
         return_value = return_value.copy().set_pos(node.pos_start, node.pos_end).set_context(context)
