@@ -1,5 +1,8 @@
 #######################################
-# INTERPRETER
+# INTERPRETER MODULE
+# Traverses the Abstract Syntax Tree and executes the program.
+# Implements the runtime semantics for each AST node type including
+# variable access, control flow, function calls, and built-in operations.
 #######################################
 
 from tokens import *
