@@ -1,3 +1,10 @@
+#######################################
+# ERROR FORMATTING MODULE
+# Generates visual error messages with arrow pointers pointing to
+# the exact location in source code where errors occur.
+# Enhances developer experience with clear error reporting.
+#######################################
+
 def string_with_arrows(text, pos_start, pos_end):
     result = ''
 
