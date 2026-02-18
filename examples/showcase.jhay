@@ -17,7 +17,7 @@ PRINT()
 PRINT("1. BASIC FEATURES:")
 PRINT("   - Comments start with #")
 PRINT("   - PRINT() displays output")
-PRINT("   - String concatenation: 'Hello' + ' ' + 'World'")
+PRINT("   - String concatenation: "Hello" + " " + "World"")
 PRINT()
 
 #######################################
@@ -35,7 +35,7 @@ PRINT("   Numbers:", age, pi, temperature)
 
 # Strings
 VAR name = "JhayScript"
-VAR greeting = 'Hello, ' + name + '!'
+VAR greeting = "Hello, " + name + "!"
 VAR multiline = "This is a\nmultiline string"
 PRINT("   Strings:", greeting)
 
@@ -163,7 +163,7 @@ APPEND(shopping, "cheese")
 PRINT("   After APPEND:", shopping)
 
 VAR popped = POP(shopping, 1)
-PRINT("   After POP index 1 (removed '" + popped + "'):", shopping)
+PRINT("   After POP index 1 (removed " + popped + "):", shopping)
 
 # List length
 PRINT("   List length (LEN):", LEN(shopping))
@@ -177,7 +177,7 @@ PRINT("   List concatenation:", combined)
 # Type checking
 PRINT("   IS_LIST(shopping):", IS_LIST(shopping))
 PRINT("   IS_NUM(42):", IS_NUM(42))
-PRINT("   IS_STR('hello'):", IS_STR("hello"))
+PRINT("   IS_STR("hello"):", IS_STR("hello"))
 PRINT()
 
 #######################################
@@ -191,7 +191,7 @@ FUN greet(name)
     RETURN "Hello, " + name + "!"
 END
 
-PRINT("   greet('Alice'):", greet("Alice"))
+PRINT("   greet("Alice"):", greet("Alice"))
 
 # Function with multiple parameters
 FUN add(a, b)
@@ -277,7 +277,7 @@ PRINT("10. BUILT-IN FUNCTIONS:")
 
 # Type checking
 PRINT("   IS_NUM(42):", IS_NUM(42))
-PRINT("   IS_STR('hello'):", IS_STR("hello"))
+PRINT("   IS_STR("hello"):", IS_STR("hello"))
 PRINT("   IS_LIST([1,2,3]):", IS_LIST([1, 2, 3]))
 PRINT("   IS_FUN(double):", IS_FUN(double))
 
@@ -358,7 +358,8 @@ PRINT()
 
 PRINT("12. FILE OPERATIONS:")
 PRINT("   Can use RUN() to execute another JhayScript file")
-PRINT("   Example: RUN('another_program.jhay')")
+VAR filename = "another_program.jhay"
+PRINT("   Example: RUN(" + filename + ")")
 PRINT()
 
 #######################################
@@ -415,7 +416,7 @@ PRINT("15. INTERACTIVE EXAMPLE (in shell):")
 PRINT("   > VAR x = 5")
 PRINT("   > x * 2")
 PRINT("   10")
-PRINT("   > FOR i = 0 TO 3 THEN PRINT('Loop:', i) END")
+PRINT("   > FOR i = 0 TO 3 THEN PRINT("Loop:", i) END")
 PRINT()
 
 #######################################
