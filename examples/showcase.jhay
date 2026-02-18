@@ -1,7 +1,7 @@
 #######################################
 # JHAYSCRIPT LANGUAGE SHOWCASE
 # A comprehensive demonstration of syntax, features, and capabilities
-# Run with: python shell.py < showcase.jhay
+# Using {} block syntax instead of THEN/END
 #######################################
 
 #######################################
@@ -31,19 +31,19 @@ VAR age = 25
 VAR pi = 3.14159
 VAR temperature = -5
 
-PRINT("   Numbers:", age, pi, temperature)
+PRINT("   Numbers: " + PRINT_RET(age) + " " + PRINT_RET(pi) + " " + PRINT_RET(temperature))
 
 # Strings
 VAR name = "JhayScript"
 VAR greeting = "Hello, " + name + "!"
 VAR multiline = "This is a\nmultiline string"
-PRINT("   Strings:", greeting)
+PRINT("   Strings: " + greeting)
 
 # Lists/Arrays
 VAR fruits = ["apple", "banana", "orange"]
 VAR mixed = [1, "two", 3.0, ["nested", "list"]]
-PRINT("   Lists:", fruits)
-PRINT("   Access list element: fruits/0 =", fruits/0)
+PRINT("   Lists: " + PRINT_RET(fruits))
+PRINT("   Access list element: fruits/0 = " + PRINT_RET(fruits/0))
 PRINT("")
 
 #######################################
@@ -54,12 +54,12 @@ PRINT("3. ARITHMETIC OPERATIONS:")
 VAR x = 10
 VAR y = 3
 
-PRINT("   x =", x, "y =", y)
-PRINT("   Addition: x + y =", x + y)
-PRINT("   Subtraction: x - y =", x - y)
-PRINT("   Multiplication: x * y =", x * y)
-PRINT("   Division: x / y =", x / y)
-PRINT("   Power: x ^ y =", x ^ y)
+PRINT("   x = " + PRINT_RET(x) + " y = " + PRINT_RET(y))
+PRINT("   Addition: x + y = " + PRINT_RET(x + y))
+PRINT("   Subtraction: x - y = " + PRINT_RET(x - y))
+PRINT("   Multiplication: x * y = " + PRINT_RET(x * y))
+PRINT("   Division: x / y = " + PRINT_RET(x / y))
+PRINT("   Power: x ^ y = " + PRINT_RET(x ^ y))
 PRINT("")
 
 #######################################
@@ -71,14 +71,14 @@ VAR a = 5
 VAR b = 10
 VAR c = 5
 
-PRINT("   a =", a, "b =", b, "c =", c)
-PRINT("   Equal: a == c →", a == c)
-PRINT("   Not equal: a != b →", a != b)
-PRINT("   Less than: a < b →", a < b)
-PRINT("   Greater than: b > a →", b > a)
-PRINT("   AND: (a < b) AND (b > 0) →", (a < b) AND (b > 0))
-PRINT("   OR: (a > b) OR (b > 0) →", (a > b) OR (b > 0))
-PRINT("   NOT: NOT (a == b) →", NOT (a == b))
+PRINT("   a = " + PRINT_RET(a) + " b = " + PRINT_RET(b) + " c = " + PRINT_RET(c))
+PRINT("   Equal: a == c -> " + PRINT_RET(a == c))
+PRINT("   Not equal: a != b -> " + PRINT_RET(a != b))
+PRINT("   Less than: a < b -> " + PRINT_RET(a < b))
+PRINT("   Greater than: b > a -> " + PRINT_RET(b > a))
+PRINT("   AND: (a < b) AND (b > 0) -> " + PRINT_RET((a < b) AND (b > 0)))
+PRINT("   OR: (a > b) OR (b > 0) -> " + PRINT_RET((a > b) OR (b > 0)))
+PRINT("   NOT: NOT (a == b) -> " + PRINT_RET(NOT (a == b)))
 PRINT("")
 
 #######################################
@@ -89,19 +89,19 @@ PRINT("5. CONDITIONAL STATEMENTS:")
 
 VAR score = 85
 
-IF score >= 90 THEN
+IF score >= 90 {
     PRINT("   Grade: A (Excellent!)")
-ELIF score >= 80 THEN
+} ELIF score >= 80 {
     PRINT("   Grade: B (Good job!)")
-ELIF score >= 70 THEN
+} ELIF score >= 70 {
     PRINT("   Grade: C (Keep practicing)")
-ELSE
+} ELSE {
     PRINT("   Grade: F (Need improvement)")
-END
+}
 
-# Inline IF
-VAR status = IF score >= 60 THEN "Pass" ELSE "Fail"
-PRINT("   Status:", status)
+# Ternary operator
+VAR status = score >= 60 ? "Pass" : "Fail"
+PRINT("   Status: " + status)
 PRINT("")
 
 #######################################
@@ -112,37 +112,37 @@ PRINT("6. LOOPS:")
 
 # FOR loop with range
 PRINT("   FOR loop 0 to 5:")
-FOR i = 0 TO 5 THEN
-    PRINT("     i =", i)
-END
+FOR i = 0 TO 5 {
+    PRINT("     i = " + PRINT_RET(i))
+}
 
 # FOR loop with STEP
 PRINT("   FOR loop with STEP 2:")
-FOR i = 0 TO 10 STEP 2 THEN
-    PRINT("     i =", i)
-END
+FOR i = 0 TO 10 STEP 2 {
+    PRINT("     i = " + PRINT_RET(i))
+}
 
 # WHILE loop
 PRINT("   WHILE loop countdown:")
 VAR count = 3
-WHILE count > 0 THEN
-    PRINT("     Countdown:", count)
+WHILE count > 0 {
+    PRINT("     Countdown: " + PRINT_RET(count))
     VAR count = count - 1
-END
+}
 
 # Loop control (BREAK and CONTINUE)
 PRINT("   Loop with BREAK and CONTINUE:")
-FOR i = 0 TO 10 THEN
-    IF i == 3 THEN
+FOR i = 0 TO 10 {
+    IF i == 3 {
         PRINT("     Skipping 3 (CONTINUE)")
         CONTINUE
-    END
-    IF i == 8 THEN
+    }
+    IF i == 8 {
         PRINT("     Stopping at 8 (BREAK)")
         BREAK
-    END
-    PRINT("     i =", i)
-END
+    }
+    PRINT("     i = " + PRINT_RET(i))
+}
 PRINT("")
 
 #######################################
@@ -152,33 +152,33 @@ PRINT("")
 PRINT("7. LISTS AND LIST OPERATIONS:")
 
 VAR shopping = ["milk", "eggs", "bread", "butter"]
-PRINT("   Original list:", shopping)
+PRINT("   Original list: " + PRINT_RET(shopping))
 
 # Access elements
-PRINT("   First item: shopping/0 →", shopping/0)
-PRINT("   Last item: shopping/3 →", shopping/3)
+PRINT("   First item: shopping/0 -> " + PRINT_RET(shopping/0))
+PRINT("   Last item: shopping/3 -> " + PRINT_RET(shopping/3))
 
 # Modify list
 APPEND(shopping, "cheese")
-PRINT("   After APPEND:", shopping)
+PRINT("   After APPEND: " + PRINT_RET(shopping))
 
 VAR popped = POP(shopping, 1)
-PRINT("   After POP index 1 (removed " + popped + "):", shopping)
+PRINT("   After POP index 1 (removed " + popped + "): " + PRINT_RET(shopping))
 
 # List length
-PRINT("   List length (LEN):", LEN(shopping))
+PRINT("   List length (LEN): " + PRINT_RET(LEN(shopping)))
 
 # List operations
 VAR list1 = [1, 2, 3]
 VAR list2 = [4, 5, 6]
 VAR combined = list1 + list2
-PRINT("   List concatenation:", combined)
+PRINT("   List concatenation: " + PRINT_RET(combined))
 
 # Type checking
-PRINT("   IS_LIST(shopping):", IS_LIST(shopping))
-PRINT("   IS_NUM(42):", IS_NUM(42))
+PRINT("   IS_LIST(shopping): " + PRINT_RET(IS_LIST(shopping)))
+PRINT("   IS_NUM(42): " + PRINT_RET(IS_NUM(42)))
 VAR str_arg = "hello"
-PRINT("   IS_STR(" + str_arg + "):", IS_STR(str_arg))
+PRINT("   IS_STR(" + str_arg + "): " + PRINT_RET(IS_STR(str_arg)))
 PRINT("")
 
 #######################################
@@ -188,53 +188,58 @@ PRINT("")
 PRINT("8. FUNCTIONS:")
 
 # Simple function
-FUN greet(name)
+FUN greet(name) {
     RETURN "Hello, " + name + "!"
-END
+}
 
-PRINT("   greet(" + "Alice" + "):", greet("Alice"))
+PRINT("   greet(" + "Alice" + "): " + greet("Alice"))
 
 # Function with multiple parameters
-FUN add(a, b)
+FUN add(a, b) {
     RETURN a + b
-END
+}
 
-PRINT("   add(5, 3):", add(5, 3))
+PRINT("   add(5, 3): " + PRINT_RET(add(5, 3)))
 
 # Arrow function syntax (single expression)
 FUN double(x) -> x * 2
 
-PRINT("   double(7):", double(7))
+PRINT("   double(7): " + PRINT_RET(double(7)))
 
 # Function with complex logic
-FUN factorial(n)
-    IF n <= 1 THEN
-        RETURN 1
-    ELSE
-        RETURN n * factorial(n - 1)
-    END
-END
+FUN factorial(n) {
+    VAR result = 1
+    VAR i = 1
+    WHILE i <= n {
+        VAR result = result * i
+        VAR i = i + 1
+    }
+    RETURN result
+}
 
-PRINT("   factorial(5):", factorial(5))
+PRINT("   factorial(5): " + PRINT_RET(factorial(5)))
 
 # Function returning a list
-FUN fibonacci(n)
+FUN fibonacci(n) {
     VAR result = [0, 1]
-    FOR i = 2 TO n THEN
-        APPEND(result, result/(i-1) + result/(i-2))
-    END
+    FOR i = 2 TO n {
+        VAR prev1 = result/(i-1)
+        VAR prev2 = result/(i-2)
+        VAR next = prev1 + prev2
+        APPEND(result, next)
+    }
     RETURN result
-END
+}
 
-PRINT("   fibonacci(8):", fibonacci(8))
+PRINT("   fibonacci(8): " + PRINT_RET(fibonacci(8)))
 
 # Higher-order function
-FUN apply_twice(func, x)
+FUN apply_twice(func, x) {
     RETURN func(func(x))
-END
+}
 
 FUN increment(x) -> x + 1
-PRINT("   apply_twice(increment, 5):", apply_twice(increment, 5))
+PRINT("   apply_twice(increment, 5): " + PRINT_RET(apply_twice(increment, 5)))
 PRINT("")
 
 #######################################
@@ -245,20 +250,20 @@ PRINT("9. FUNCTIONS AS FIRST-CLASS CITIZENS:")
 
 # Store function in variable
 VAR my_func = double
-PRINT("   my_func = double → my_func(10):", my_func(10))
+PRINT("   my_func = double -> my_func(10): " + PRINT_RET(my_func(10)))
 
 # Pass function as argument
-FUN map(elements, func)
+FUN map(elements, func) {
     VAR result = []
-    FOR i = 0 TO LEN(elements) THEN
+    FOR i = 0 TO LEN(elements) {
         APPEND(result, func(elements/i))
-    END
+    }
     RETURN result
-END
+}
 
 VAR numbers = [1, 2, 3, 4, 5]
 VAR squared = map(numbers, FUN(x) -> x * x)
-PRINT("   map(numbers, square):", squared)
+PRINT("   map(numbers, square): " + PRINT_RET(squared))
 
 # Return function from function
 FUN multiply_by_2(x) -> x * 2
@@ -267,7 +272,7 @@ FUN multiply_by_4(x) -> x * 4
 
 # Then use them directly
 VAR times3 = multiply_by_3
-PRINT("   times3(10):", times3(10))
+PRINT("   times3(10): " + PRINT_RET(times3(10)))
 PRINT("")
 
 #######################################
@@ -277,26 +282,26 @@ PRINT("")
 PRINT("10. BUILT-IN FUNCTIONS:")
 
 # Type checking
-PRINT("   IS_NUM(42):", IS_NUM(42))
-PRINT("   IS_STR(" + "hello" + "):", IS_STR("hello"))
-PRINT("   IS_LIST([1,2,3]):", IS_LIST([1, 2, 3]))
-PRINT("   IS_FUN(double):", IS_FUN(double))
+PRINT("   IS_NUM(42): " + PRINT_RET(IS_NUM(42)))
+PRINT("   IS_STR(" + "hello" + "): " + PRINT_RET(IS_STR("hello")))
+PRINT("   IS_LIST([1,2,3]): " + PRINT_RET(IS_LIST([1, 2, 3])))
+PRINT("   IS_FUN(double): " + PRINT_RET(IS_FUN(double)))
 
 # List operations
 VAR colors = ["red", "green", "blue"]
 VAR more_colors = ["yellow", "purple"]
 EXTEND(colors, more_colors)
-PRINT("   EXTEND(colors, more_colors):", colors)
-PRINT("   LEN(colors):", LEN(colors))
+PRINT("   EXTEND(colors, more_colors): " + PRINT_RET(colors))
+PRINT("   LEN(colors): " + PRINT_RET(LEN(colors)))
 
 # Math constants
-PRINT("   MATH_PI:", MATH_PI)
-PRINT("   TRUE, FALSE:", TRUE, ",", FALSE)
-PRINT("   NULL:", NULL)
+PRINT("   MATH_PI: " + PRINT_RET(MATH_PI))
+PRINT("   TRUE, FALSE: " + PRINT_RET(TRUE) + " , " + PRINT_RET(FALSE))
+PRINT("   NULL: " + PRINT_RET(NULL))
 
 # String to output capture
 VAR captured = PRINT_RET("This is captured output")
-PRINT("   PRINT_RET returns:", captured)
+PRINT("   PRINT_RET returns: " + captured)
 PRINT("")
 
 #######################################
@@ -317,12 +322,12 @@ APPEND(students, student3)
 APPEND(students, student4)
 
 # Function to process student data
-FUN process_students(student_list, passing_score)
+FUN process_students(student_list, passing_score) {
     VAR results = []
     VAR total_score = 0
 
     VAR i = 0
-    WHILE i < LEN(student_list) THEN
+    WHILE i < LEN(student_list) {
         VAR student = student_list/i
         VAR name = student/0
         VAR score = student/1
@@ -330,24 +335,24 @@ FUN process_students(student_list, passing_score)
 
         # Determine status
         VAR status = "FAIL"
-        IF score >= passing_score THEN
+        IF score >= passing_score {
             VAR status = "PASS"
-        END
+        }
 
         # Determine grade
         VAR grade = "F"
-        IF score >= 90 THEN
+        IF score >= 90 {
             VAR grade = "A"
-        END
-        IF score >= 80 AND score < 90 THEN
+        }
+        IF score >= 80 AND score < 90 {
             VAR grade = "B"
-        END
-        IF score >= 70 AND score < 80 THEN
+        }
+        IF score >= 70 AND score < 80 {
             VAR grade = "C"
-        END
-        IF score >= 60 AND score < 70 THEN
+        }
+        IF score >= 60 AND score < 70 {
             VAR grade = "D"
-        END
+        }
 
         # Create student record
         VAR student_record = [name, score, grade, status, LEN(subjects)]
@@ -356,7 +361,7 @@ FUN process_students(student_list, passing_score)
         # Update total score
         VAR total_score = total_score + score
         VAR i = i + 1
-    END
+    }
 
     # Calculate average
     VAR average = total_score / LEN(student_list)
@@ -364,7 +369,7 @@ FUN process_students(student_list, passing_score)
     # Return results and average
     VAR final_result = [results, average]
     RETURN final_result
-END
+}
 
 # Process the students
 VAR processed = process_students(students, 65)
@@ -373,7 +378,7 @@ VAR class_average = processed/1
 
 PRINT("   Student Results:")
 VAR j = 0
-WHILE j < LEN(student_results) THEN
+WHILE j < LEN(student_results) {
     VAR s = student_results/j
     VAR output = "     " + s/0
     VAR output = output + ": Score=" + PRINT_RET(s/1)
@@ -382,8 +387,8 @@ WHILE j < LEN(student_results) THEN
     VAR output = output + ", Subjects=" + PRINT_RET(s/4)
     PRINT(output)
     VAR j = j + 1
-END
-PRINT("   Class Average:", class_average)
+}
+PRINT("   Class Average: " + PRINT_RET(class_average))
 PRINT("")
 
 #######################################
@@ -413,7 +418,7 @@ PRINT("   h) Lists use '/' for access (unconventional)")
 
 # Demonstrate list access syntax
 VAR demo = [10, 20, 30]
-PRINT("   List access: demo/1 =", demo/1)
+PRINT("   List access: demo/1 = " + PRINT_RET(demo/1))
 PRINT("")
 
 #######################################
@@ -422,24 +427,31 @@ PRINT("")
 
 PRINT("14. QUICK PERFORMANCE TEST:")
 
-VAR start = 0
 VAR sum = 0
-FOR i = 0 TO 10000 THEN
+FOR i = 0 TO 10000 {
     VAR sum = sum + i
-END
-PRINT("   Sum 0 to 10000 =", sum)
+}
+PRINT("   Sum 0 to 10000 = " + PRINT_RET(sum))
 
 # Fibonacci performance
-FUN fib(n)
-    IF n <= 1 THEN
+FUN fib(n) {
+    IF n <= 1 {
         RETURN n
-    ELSE
-        RETURN fib(n - 1) + fib(n - 2)
-    END
-END
+    }
+    VAR a = 0
+    VAR b = 1
+    VAR i = 2
+    WHILE i <= n {
+        VAR c = a + b
+        VAR a = b
+        VAR b = c
+        VAR i = i + 1
+    }
+    RETURN b
+}
 
-PRINT("   fib(10) =", fib(10))
-PRINT("   (fib(30) would be slow due to recursion)")
+PRINT("   fib(10) = " + PRINT_RET(fib(10)))
+PRINT("   (fib(30) would be slow due to iteration)")
 PRINT("")
 
 #######################################
@@ -450,8 +462,8 @@ PRINT("15. INTERACTIVE EXAMPLE (in shell):")
 PRINT("   > VAR x = 5")
 PRINT("   > x * 2")
 PRINT("   10")
-VAR loop_msg = "Loop:"
-PRINT("   > FOR i = 0 TO 3 THEN PRINT(" + loop_msg + ", i) END")
+VAR loop_msg = "Loop: "
+PRINT("   > FOR i = 0 TO 3 { PRINT(" + loop_msg + " + PRINT_RET(i)) }")
 PRINT("")
 
 #######################################
@@ -463,10 +475,10 @@ PRINT("SHOWCASE COMPLETE")
 PRINT("JhayScript Features Demonstrated:")
 PRINT("  ✓ Variables and data types")
 PRINT("  ✓ Arithmetic and comparisons")
-PRINT("  ✓ Control flow (IF/ELIF/ELSE)")
-PRINT("  ✓ Loops (FOR, WHILE) with BREAK/CONTINUE")
+PRINT("  ✓ Control flow (IF/ELIF/ELSE with {})")
+PRINT("  ✓ Loops (FOR, WHILE) with BREAK/CONTINUE and {}")
 PRINT("  ✓ Lists and list operations")
-PRINT("  ✓ Functions (regular, arrow, recursive)")
+PRINT("  ✓ Functions (regular, arrow, recursive) with {}")
 PRINT("  ✓ First-class functions")
 PRINT("  ✓ Built-in functions")
 PRINT("  ✓ Complex data processing")

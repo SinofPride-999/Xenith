@@ -9,7 +9,7 @@ from nodes import *
 from tokens import TT_KEYWORD, TT_IDENTIFIER, TT_EQ, TT_NEWLINE, TT_EOF, TT_LPAREN, TT_RPAREN, \
     TT_COMMA, TT_ARROW, TT_LSQUARE, TT_RSQUARE, TT_LBRACE, TT_RBRACE, \
     TT_INT, TT_FLOAT, TT_STRING, TT_PLUS, TT_MINUS, TT_MUL, TT_DIV, TT_POW, \
-    TT_EE, TT_NE, TT_LT, TT_GT, TT_LTE, TT_GTE
+    TT_EE, TT_NE, TT_LT, TT_GT, TT_LTE, TT_GTE, TT_QUESTION, TT_COLON
 from parse_result import ParseResult
 
 class Parser:
@@ -179,8 +179,8 @@ class Parser:
                 return res
             return res.success(VarAssignNode(var_name, expr))
 
-        node = res.register(self.bin_op(self.comp_expr, ((TT_KEYWORD, 'AND'), (TT_KEYWORD, 'OR'))))
-
+        # Parse ternary expression
+        node = res.register(self.ternary_expr())
         if res.error:
             return res.failure(InvalidSyntaxError(
                 self.current_tok.pos_start, self.current_tok.pos_end,
@@ -458,6 +458,47 @@ class Parser:
                 return res
 
         return res.success(IfNode(cases, else_case))
+
+    def ternary_expr(self):
+        """Parse ternary expression: condition ? true_expr : false_expr"""
+        res = ParseResult()
+
+        # Parse the condition (which can be any expression)
+        condition = res.register(self.bin_op(self.comp_expr, ((TT_KEYWORD, 'AND'), (TT_KEYWORD, 'OR'))))
+        if res.error:
+            return res
+
+        # Check for ternary operator
+        if self.current_tok.type == TT_QUESTION:
+            res.register_advancement()
+            self.advance()
+
+            # Parse true expression
+            true_expr = res.register(self.expr())
+            if res.error:
+                return res
+
+            # Check for colon
+            if self.current_tok.type != TT_COLON:
+                return res.failure(InvalidSyntaxError(
+                    self.current_tok.pos_start, self.current_tok.pos_end,
+                    "Expected ':' in ternary expression"
+                ))
+
+            res.register_advancement()
+            self.advance()
+
+            # Parse false expression
+            false_expr = res.register(self.expr())
+            if res.error:
+                return res
+
+            # Create ternary node
+            return res.success(TernaryNode(condition, true_expr, false_expr,
+                                        condition.pos_start, false_expr.pos_end))
+
+        # No ternary operator, return just the condition
+        return res.success(condition)
 
     def for_expr(self):
         res = ParseResult()

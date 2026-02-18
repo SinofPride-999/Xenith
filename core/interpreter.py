@@ -151,6 +151,25 @@ class Interpreter:
 
         return res.success(Number.null)
 
+    def visit_TernaryNode(self, node, context):
+        res = RTResult()
+
+        # Evaluate the condition
+        condition_value = res.register(self.visit(node.condition, context))
+        if res.should_return():
+            return res
+
+        # Evaluate the appropriate branch
+        if condition_value.is_true():
+            result = res.register(self.visit(node.true_expr, context))
+        else:
+            result = res.register(self.visit(node.false_expr, context))
+
+        if res.should_return():
+            return res
+
+        return res.success(result.set_pos(node.pos_start, node.pos_end))
+
     def visit_ForNode(self, node, context):
         res = RTResult()
         elements = []
@@ -254,7 +273,7 @@ class Interpreter:
             if res.should_return():
                 return res
 
-        # Check if it's a bult-in function or regular function
+        # Check if it's a built-in function or regular function
         if hasattr(value_to_call, 'execute'):
             # Pass self (interpreter) as the second argument
             return_value = res.register(value_to_call.execute(args, self))

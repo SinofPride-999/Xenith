@@ -34,6 +34,17 @@ class ListNode:
     def __getitem__(self, index):
         return self.element_nodes[index]
 
+class TernaryNode:
+    def __init__(self, condition, true_expr, false_expr, pos_start, pos_end):
+        self.condition = condition
+        self.true_expr = true_expr
+        self.false_expr = false_expr
+        self.pos_start = pos_start
+        self.pos_end = pos_end
+
+    def __repr__(self):
+        return f'({self.condition} ? {self.true_expr} : {self.false_expr})'
+
 class VarAccessNode:
     def __init__(self, var_name_tok):
         self.var_name_tok = var_name_tok
