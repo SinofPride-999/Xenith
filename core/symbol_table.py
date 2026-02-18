@@ -1,5 +1,8 @@
 #######################################
-# SYMBOL TABLE
+# SYMBOL TABLE MODULE
+# Implements variable storage and lookup with support for nested scopes.
+# Manages the mapping between identifiers and their runtime values
+# during program execution.
 #######################################
 
 class SymbolTable:
