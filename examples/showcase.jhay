@@ -1,0 +1,437 @@
+#######################################
+# JHAYSCRIPT LANGUAGE SHOWCASE
+# A comprehensive demonstration of syntax, features, and capabilities
+# Run with: python shell.py < showcase.jhay
+#######################################
+
+#######################################
+# 1. BASIC OUTPUT AND COMMENTS
+#######################################
+
+PRINT("=" * 50)
+PRINT("JHAYSCRIPT LANGUAGE SHOWCASE")
+PRINT("=" * 50)
+PRINT()
+
+# This is a single-line comment
+PRINT("1. BASIC FEATURES:")
+PRINT("   - Comments start with #")
+PRINT("   - PRINT() displays output")
+PRINT("   - String concatenation: 'Hello' + ' ' + 'World'")
+PRINT()
+
+#######################################
+# 2. VARIABLES AND DATA TYPES
+#######################################
+
+PRINT("2. VARIABLES AND DATA TYPES:")
+
+# Numbers (integers and floats)
+VAR age = 25
+VAR pi = 3.14159
+VAR temperature = -5
+
+PRINT("   Numbers:", age, pi, temperature)
+
+# Strings
+VAR name = "JhayScript"
+VAR greeting = 'Hello, ' + name + '!'
+VAR multiline = "This is a\nmultiline string"
+PRINT("   Strings:", greeting)
+
+# Lists/Arrays
+VAR fruits = ["apple", "banana", "orange"]
+VAR mixed = [1, "two", 3.0, ["nested", "list"]]
+PRINT("   Lists:", fruits)
+PRINT("   Access list element: fruits/0 =", fruits/0)
+PRINT()
+
+#######################################
+# 3. ARITHMETIC OPERATIONS
+#######################################
+
+PRINT("3. ARITHMETIC OPERATIONS:")
+VAR x = 10
+VAR y = 3
+
+PRINT("   x =", x, "y =", y)
+PRINT("   Addition: x + y =", x + y)
+PRINT("   Subtraction: x - y =", x - y)
+PRINT("   Multiplication: x * y =", x * y)
+PRINT("   Division: x / y =", x / y)
+PRINT("   Power: x ^ y =", x ^ y)
+PRINT()
+
+#######################################
+# 4. COMPARISONS AND LOGIC
+#######################################
+
+PRINT("4. COMPARISONS AND LOGIC:")
+VAR a = 5
+VAR b = 10
+VAR c = 5
+
+PRINT("   a =", a, "b =", b, "c =", c)
+PRINT("   Equal: a == c →", a == c)
+PRINT("   Not equal: a != b →", a != b)
+PRINT("   Less than: a < b →", a < b)
+PRINT("   Greater than: b > a →", b > a)
+PRINT("   AND: (a < b) AND (b > 0) →", (a < b) AND (b > 0))
+PRINT("   OR: (a > b) OR (b > 0) →", (a > b) OR (b > 0))
+PRINT("   NOT: NOT (a == b) →", NOT (a == b))
+PRINT()
+
+#######################################
+# 5. CONDITIONAL STATEMENTS
+#######################################
+
+PRINT("5. CONDITIONAL STATEMENTS:")
+
+VAR score = 85
+
+IF score >= 90 THEN
+    PRINT("   Grade: A (Excellent!)")
+ELIF score >= 80 THEN
+    PRINT("   Grade: B (Good job!)")
+ELIF score >= 70 THEN
+    PRINT("   Grade: C (Keep practicing)")
+ELSE
+    PRINT("   Grade: F (Need improvement)")
+END
+
+# Inline IF
+VAR status = IF score >= 60 THEN "Pass" ELSE "Fail"
+PRINT("   Status:", status)
+PRINT()
+
+#######################################
+# 6. LOOPS
+#######################################
+
+PRINT("6. LOOPS:")
+
+# FOR loop with range
+PRINT("   FOR loop 0 to 5:")
+FOR i = 0 TO 5 THEN
+    PRINT("     i =", i)
+END
+
+# FOR loop with STEP
+PRINT("   FOR loop with STEP 2:")
+FOR i = 0 TO 10 STEP 2 THEN
+    PRINT("     i =", i)
+END
+
+# WHILE loop
+PRINT("   WHILE loop countdown:")
+VAR count = 3
+WHILE count > 0 THEN
+    PRINT("     Countdown:", count)
+    VAR count = count - 1
+END
+
+# Loop control (BREAK and CONTINUE)
+PRINT("   Loop with BREAK and CONTINUE:")
+FOR i = 0 TO 10 THEN
+    IF i == 3 THEN
+        PRINT("     Skipping 3 (CONTINUE)")
+        CONTINUE
+    END
+    IF i == 8 THEN
+        PRINT("     Stopping at 8 (BREAK)")
+        BREAK
+    END
+    PRINT("     i =", i)
+END
+PRINT()
+
+#######################################
+# 7. LISTS AND LIST OPERATIONS
+#######################################
+
+PRINT("7. LISTS AND LIST OPERATIONS:")
+
+VAR shopping = ["milk", "eggs", "bread", "butter"]
+PRINT("   Original list:", shopping)
+
+# Access elements
+PRINT("   First item: shopping/0 →", shopping/0)
+PRINT("   Last item: shopping/3 →", shopping/3)
+
+# Modify list
+APPEND(shopping, "cheese")
+PRINT("   After APPEND:", shopping)
+
+VAR popped = POP(shopping, 1)
+PRINT("   After POP index 1 (removed '" + popped + "'):", shopping)
+
+# List length
+PRINT("   List length (LEN):", LEN(shopping))
+
+# List operations
+VAR list1 = [1, 2, 3]
+VAR list2 = [4, 5, 6]
+VAR combined = list1 + list2
+PRINT("   List concatenation:", combined)
+
+# Type checking
+PRINT("   IS_LIST(shopping):", IS_LIST(shopping))
+PRINT("   IS_NUM(42):", IS_NUM(42))
+PRINT("   IS_STR('hello'):", IS_STR("hello"))
+PRINT()
+
+#######################################
+# 8. FUNCTIONS
+#######################################
+
+PRINT("8. FUNCTIONS:")
+
+# Simple function
+FUN greet(name)
+    RETURN "Hello, " + name + "!"
+END
+
+PRINT("   greet('Alice'):", greet("Alice"))
+
+# Function with multiple parameters
+FUN add(a, b)
+    RETURN a + b
+END
+
+PRINT("   add(5, 3):", add(5, 3))
+
+# Arrow function syntax (single expression)
+FUN double(x) -> x * 2
+
+PRINT("   double(7):", double(7))
+
+# Function with complex logic
+FUN factorial(n)
+    IF n <= 1 THEN
+        RETURN 1
+    ELSE
+        RETURN n * factorial(n - 1)
+    END
+END
+
+PRINT("   factorial(5):", factorial(5))
+
+# Function returning a list
+FUN fibonacci(n)
+    VAR result = [0, 1]
+    FOR i = 2 TO n THEN
+        APPEND(result, result/(i-1) + result/(i-2))
+    END
+    RETURN result
+END
+
+PRINT("   fibonacci(8):", fibonacci(8))
+
+# Higher-order function
+FUN apply_twice(func, x)
+    RETURN func(func(x))
+END
+
+FUN increment(x) -> x + 1
+PRINT("   apply_twice(increment, 5):", apply_twice(increment, 5))
+PRINT()
+
+#######################################
+# 9. FUNCTION AS FIRST-CLASS CITIZEN
+#######################################
+
+PRINT("9. FUNCTIONS AS FIRST-CLASS CITIZENS:")
+
+# Store function in variable
+VAR my_func = double
+PRINT("   my_func = double → my_func(10):", my_func(10))
+
+# Pass function as argument
+FUN map(elements, func)
+    VAR result = []
+    FOR i = 0 TO LEN(elements) THEN
+        APPEND(result, func(elements/i))
+    END
+    RETURN result
+END
+
+VAR numbers = [1, 2, 3, 4, 5]
+VAR squared = map(numbers, FUN(x) -> x * x)
+PRINT("   map(numbers, square):", squared)
+
+# Return function from function
+FUN make_multiplier(factor)
+    FUN multiplier(x) -> x * factor
+    RETURN multiplier
+END
+
+VAR times3 = make_multiplier(3)
+PRINT("   times3(10):", times3(10))
+PRINT()
+
+#######################################
+# 10. BUILT-IN FUNCTIONS
+#######################################
+
+PRINT("10. BUILT-IN FUNCTIONS:")
+
+# Type checking
+PRINT("   IS_NUM(42):", IS_NUM(42))
+PRINT("   IS_STR('hello'):", IS_STR("hello"))
+PRINT("   IS_LIST([1,2,3]):", IS_LIST([1, 2, 3]))
+PRINT("   IS_FUN(double):", IS_FUN(double))
+
+# List operations
+VAR colors = ["red", "green", "blue"]
+VAR more_colors = ["yellow", "purple"]
+EXTEND(colors, more_colors)
+PRINT("   EXTEND(colors, more_colors):", colors)
+PRINT("   LEN(colors):", LEN(colors))
+
+# Math constants
+PRINT("   MATH_PI:", MATH_PI)
+PRINT("   TRUE, FALSE:", TRUE, ",", FALSE)
+PRINT("   NULL:", NULL)
+
+# String to output capture
+VAR captured = PRINT_RET("This is captured output")
+PRINT("   PRINT_RET returns:", captured)
+PRINT()
+
+#######################################
+# 11. COMPLEX EXAMPLE: DATA PROCESSING
+#######################################
+
+PRINT("11. COMPLEX EXAMPLE: STUDENT GRADE PROCESSING")
+
+# Student records
+VAR students = [
+    ["Alice", 85, ["Math", "Science"]],
+    ["Bob", 62, ["History"]],
+    ["Charlie", 95, ["Math", "Art", "Music"]],
+    ["Diana", 78, ["Science", "History"]]
+]
+
+# Function to process student data
+FUN process_students(student_list, passing_score)
+    VAR results = []
+    VAR total_score = 0
+
+    FOR i = 0 TO LEN(student_list) THEN
+        VAR student = student_list/i
+        VAR name = student/0
+        VAR score = student/1
+        VAR subjects = student/2
+
+        VAR status = IF score >= passing_score THEN "PASS" ELSE "FAIL"
+        VAR grade = IF score >= 90 THEN "A"
+                    ELIF score >= 80 THEN "B"
+                    ELIF score >= 70 THEN "C"
+                    ELIF score >= 60 THEN "D"
+                    ELSE "F"
+                    END
+
+        APPEND(results, [name, score, grade, status, LEN(subjects)])
+        VAR total_score = total_score + score
+    END
+
+    VAR average = total_score / LEN(student_list)
+
+    RETURN [results, average]
+END
+
+VAR processed = process_students(students, 65)
+VAR student_results = processed/0
+VAR class_average = processed/1
+
+PRINT("   Student Results:")
+FOR i = 0 TO LEN(student_results) THEN
+    VAR s = student_results/i
+    PRINT("     " + s/0 + ": Score=" + s/1 + ", Grade=" + s/2 + ", " + s/3 + ", Subjects=" + s/4)
+END
+PRINT("   Class Average:", class_average)
+PRINT()
+
+#######################################
+# 12. FILE OPERATIONS (RUN example)
+#######################################
+
+PRINT("12. FILE OPERATIONS:")
+PRINT("   Can use RUN() to execute another JhayScript file")
+PRINT("   Example: RUN('another_program.jhay')")
+PRINT()
+
+#######################################
+# 13. DEMONSTRATING LIMITATIONS
+#######################################
+
+PRINT("13. KNOWN LIMITATIONS:")
+
+PRINT("   a) No classes/objects (only lists and primitive types)")
+PRINT("   b) Limited error handling (no try/catch)")
+PRINT("   c) No modules/imports (except RUN)")
+PRINT("   d) No dictionary/map type")
+PRINT("   e) No built-in file I/O (except RUN)")
+PRINT("   f) Recursion depth limited by Python's stack")
+PRINT("   g) No pattern matching")
+PRINT("   h) Lists use '/' for access (unconventional)")
+
+# Demonstrate list access syntax
+VAR demo = [10, 20, 30]
+PRINT("   List access: demo/1 =", demo/1)
+PRINT()
+
+#######################################
+# 14. PERFORMANCE TEST
+#######################################
+
+PRINT("14. QUICK PERFORMANCE TEST:")
+
+VAR start = 0
+VAR sum = 0
+FOR i = 0 TO 10000 THEN
+    VAR sum = sum + i
+END
+PRINT("   Sum 0 to 10000 =", sum)
+
+# Fibonacci performance
+FUN fib(n)
+    IF n <= 1 THEN
+        RETURN n
+    ELSE
+        RETURN fib(n - 1) + fib(n - 2)
+    END
+END
+
+PRINT("   fib(10) =", fib(10))
+PRINT("   (fib(30) would be slow due to recursion)")
+PRINT()
+
+#######################################
+# 15. INTERACTIVE EXAMPLE
+#######################################
+
+PRINT("15. INTERACTIVE EXAMPLE (in shell):")
+PRINT("   > VAR x = 5")
+PRINT("   > x * 2")
+PRINT("   10")
+PRINT("   > FOR i = 0 TO 3 THEN PRINT('Loop:', i) END")
+PRINT()
+
+#######################################
+# CONCLUSION
+#######################################
+
+PRINT("=" * 50)
+PRINT("SHOWCASE COMPLETE")
+PRINT("JhayScript Features Demonstrated:")
+PRINT("  ✓ Variables and data types")
+PRINT("  ✓ Arithmetic and comparisons")
+PRINT("  ✓ Control flow (IF/ELIF/ELSE)")
+PRINT("  ✓ Loops (FOR, WHILE) with BREAK/CONTINUE")
+PRINT("  ✓ Lists and list operations")
+PRINT("  ✓ Functions (regular, arrow, recursive)")
+PRINT("  ✓ First-class functions")
+PRINT("  ✓ Built-in functions")
+PRINT("  ✓ Complex data processing")
+PRINT("=" * 50)
