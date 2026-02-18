@@ -12,7 +12,6 @@ from error import RTError
 from runtime_result import RTResult
 from context import Context
 from symbol_table import SymbolTable
-from interpreter import Interpreter
 
 class Value:
     def __init__(self):
