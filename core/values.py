@@ -369,7 +369,7 @@ class BuiltInFunction(BaseFunction):
     def __init__(self, name):
         super().__init__(name)
 
-    def execute(self, args):
+    def execute(self, args, interpreter=None):
         res = RTResult()
         exec_ctx = self.generate_new_context()
 
