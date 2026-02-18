@@ -177,7 +177,8 @@ PRINT("   List concatenation:", combined)
 # Type checking
 PRINT("   IS_LIST(shopping):", IS_LIST(shopping))
 PRINT("   IS_NUM(42):", IS_NUM(42))
-PRINT("   IS_STR("hello"):", IS_STR("hello"))
+VAR str_arg = "hello"
+PRINT("   IS_STR(" + str_arg + "):", IS_STR(str_arg))
 PRINT()
 
 #######################################
