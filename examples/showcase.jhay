@@ -416,7 +416,8 @@ PRINT("15. INTERACTIVE EXAMPLE (in shell):")
 PRINT("   > VAR x = 5")
 PRINT("   > x * 2")
 PRINT("   10")
-PRINT("   > FOR i = 0 TO 3 THEN PRINT("Loop:", i) END")
+VAR loop_msg = "Loop:"
+PRINT("   > FOR i = 0 TO 3 THEN PRINT(" + loop_msg + ", i) END")
 PRINT()
 
 #######################################
