@@ -1,5 +1,8 @@
 #######################################
-# PARSE RESULT
+# PARSE RESULT MODULE
+# Tracks the state during parsing operations including success/failure status,
+# node construction, and error recovery. Enables the parser to attempt
+# multiple parsing strategies and backtrack when necessary.
 #######################################
 
 class ParseResult:
