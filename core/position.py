@@ -1,5 +1,8 @@
 #######################################
-# POSITION
+# POSITION TRACKING MODULE
+# Tracks the current position (index, line, column) in the source code
+# during lexical analysis. Essential for accurate error reporting
+# and maintaining source code context throughout the compilation process.
 #######################################
 
 class Position:
