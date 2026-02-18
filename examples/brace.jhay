@@ -1,0 +1,21 @@
+# Test brace syntax
+VAR x = 10
+VAR y = 20
+
+IF x > y {
+    PRINT("x is greater")
+} ELIF x < y {
+    PRINT("y is greater")
+} ELSE {
+    PRINT("x and y are equal")
+}
+
+FOR i = 0 TO 5 {
+    PRINT("i = " + i)
+}
+
+FUN add(a, b) {
+    RETURN a + b
+}
+
+PRINT(add(5, 3))

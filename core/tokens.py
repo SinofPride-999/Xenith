@@ -20,8 +20,8 @@ TT_LPAREN = 'LPAREN'
 TT_RPAREN = 'RPAREN'
 TT_LSQUARE = 'LSQUARE'
 TT_RSQUARE = 'RSQUARE'
-TT_LBRACE = 'LBRACE'      # New token for {
-TT_RBRACE = 'RBRACE'      # New token for }
+TT_LBRACE = 'LBRACE'      # ADD THIS
+TT_RBRACE = 'RBRACE'      # ADD THIS
 TT_EE = 'EE'
 TT_NE = 'NE'
 TT_LT = 'LT'
@@ -35,7 +35,7 @@ TT_EOF = 'EOF'
 
 KEYWORDS = [
     'VAR', 'AND', 'OR', 'NOT', 'IF', 'ELIF', 'ELSE', 'FOR', 'TO', 'STEP',
-    'WHILE', 'FUN', 'RETURN', 'CONTINUE', 'BREAK',  # Removed THEN and END
+    'WHILE', 'FUN', 'RETURN', 'CONTINUE', 'BREAK',  # REMOVED THEN and END
 ]
 
 class Token:

@@ -411,20 +411,17 @@ class Parser:
         if res.error:
             return res
 
-        # Parse body (either single statement or block)
+        # Parse body (either block or single statement)
         body = None
-        else_case = None
-
         if self.current_tok.type == TT_LBRACE:
             body = res.register(self.block())
-            if res.error:
-                return res
         else:
             body = res.register(self.statement())
-            if res.error:
-                return res
 
-        # Parse ELIF and ELSE clauses
+        if res.error:
+            return res
+
+        # Parse ELIF clauses
         cases = [(condition, body, False)]
 
         while self.current_tok.matches(TT_KEYWORD, 'ELIF'):
@@ -446,6 +443,8 @@ class Parser:
 
             cases.append((elif_condition, elif_body, False))
 
+        # Parse ELSE clause
+        else_case = None
         if self.current_tok.matches(TT_KEYWORD, 'ELSE'):
             res.register_advancement()
             self.advance()
@@ -508,6 +507,7 @@ class Parser:
         if res.error:
             return res
 
+        step_value = None
         if self.current_tok.matches(TT_KEYWORD, 'STEP'):
             res.register_advancement()
             self.advance()
@@ -515,8 +515,6 @@ class Parser:
             step_value = res.register(self.expr())
             if res.error:
                 return res
-        else:
-            step_value = None
 
         # Parse body (either block or single statement)
         body = None
