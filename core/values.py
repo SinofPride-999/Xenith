@@ -1,5 +1,9 @@
 #######################################
-# VALUES
+# RUNTIME VALUES MODULE
+# Defines the runtime object system for JhayScript including Numbers, Strings,
+# Lists, and Functions. Implements operations between values (arithmetic,
+# comparison, logical) and provides the foundation for the interpreter's
+# execution semantics.
 #######################################
 
 import math
