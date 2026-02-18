@@ -336,9 +336,13 @@ class Function(BaseFunction):
         self.arg_names = arg_names
         self.should_auto_return = should_auto_return
 
-    def execute(self, args):
+    def execute(self, args, interpreter=None):
         res = RTResult()
-        interpreter = Interpreter()
+        # Create interpreter if not provided
+        if interpreter is None:
+            from interpreter import Interpreter
+            interpreter = Interpreter()
+
         exec_ctx = self.generate_new_context()
 
         res.register(self.check_and_populate_args(self.arg_names, args, exec_ctx))
