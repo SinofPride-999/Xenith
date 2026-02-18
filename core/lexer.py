@@ -1,6 +1,10 @@
 #######################################
-# LEXER
+# LEXICAL ANALYZER MODULE
+# Converts raw source code into a stream of tokens.
+# Handles numbers, strings, identifiers, keywords, operators, and comments.
+# Performs character-by-character scanning with position tracking.
 #######################################
+
 
 import string
 from tokens import *
