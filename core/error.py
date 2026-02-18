@@ -1,5 +1,8 @@
 #######################################
-# ERRORS
+# ERROR HANDLING MODULE
+# Defines the error hierarchy for JhayScript including lexical errors,
+# syntax errors, and runtime errors with traceback support.
+# Provides formatted error messages with arrow pointers to source code.
 #######################################
 
 from strings_with_arrow import string_with_arrows
