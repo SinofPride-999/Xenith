@@ -1,5 +1,8 @@
 #######################################
-# PARSER
+# SYNTAX PARSER MODULE
+# Implements recursive descent parsing to transform token streams
+# into an Abstract Syntax Tree (AST). Handles all JhayScript grammar rules
+# including expressions, control structures, and function definitions.
 #######################################
 
 from error import InvalidSyntaxError
