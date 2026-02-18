@@ -11,14 +11,14 @@
 PRINT("=" * 50)
 PRINT("JHAYSCRIPT LANGUAGE SHOWCASE")
 PRINT("=" * 50)
-PRINT()
+PRINT("")
 
 # This is a single-line comment
 PRINT("1. BASIC FEATURES:")
 PRINT("   - Comments start with #")
 PRINT("   - PRINT() displays output")
 PRINT("   - String concatenation: " + "Hello" + " " + "World")
-PRINT()
+PRINT("")
 
 #######################################
 # 2. VARIABLES AND DATA TYPES
@@ -44,7 +44,7 @@ VAR fruits = ["apple", "banana", "orange"]
 VAR mixed = [1, "two", 3.0, ["nested", "list"]]
 PRINT("   Lists:", fruits)
 PRINT("   Access list element: fruits/0 =", fruits/0)
-PRINT()
+PRINT("")
 
 #######################################
 # 3. ARITHMETIC OPERATIONS
@@ -60,7 +60,7 @@ PRINT("   Subtraction: x - y =", x - y)
 PRINT("   Multiplication: x * y =", x * y)
 PRINT("   Division: x / y =", x / y)
 PRINT("   Power: x ^ y =", x ^ y)
-PRINT()
+PRINT("")
 
 #######################################
 # 4. COMPARISONS AND LOGIC
@@ -79,7 +79,7 @@ PRINT("   Greater than: b > a →", b > a)
 PRINT("   AND: (a < b) AND (b > 0) →", (a < b) AND (b > 0))
 PRINT("   OR: (a > b) OR (b > 0) →", (a > b) OR (b > 0))
 PRINT("   NOT: NOT (a == b) →", NOT (a == b))
-PRINT()
+PRINT("")
 
 #######################################
 # 5. CONDITIONAL STATEMENTS
@@ -102,7 +102,7 @@ END
 # Inline IF
 VAR status = IF score >= 60 THEN "Pass" ELSE "Fail"
 PRINT("   Status:", status)
-PRINT()
+PRINT("")
 
 #######################################
 # 6. LOOPS
@@ -143,7 +143,7 @@ FOR i = 0 TO 10 THEN
     END
     PRINT("     i =", i)
 END
-PRINT()
+PRINT("")
 
 #######################################
 # 7. LISTS AND LIST OPERATIONS
@@ -179,7 +179,7 @@ PRINT("   IS_LIST(shopping):", IS_LIST(shopping))
 PRINT("   IS_NUM(42):", IS_NUM(42))
 VAR str_arg = "hello"
 PRINT("   IS_STR(" + str_arg + "):", IS_STR(str_arg))
-PRINT()
+PRINT("")
 
 #######################################
 # 8. FUNCTIONS
@@ -235,7 +235,7 @@ END
 
 FUN increment(x) -> x + 1
 PRINT("   apply_twice(increment, 5):", apply_twice(increment, 5))
-PRINT()
+PRINT("")
 
 #######################################
 # 9. FUNCTION AS FIRST-CLASS CITIZEN
@@ -268,7 +268,7 @@ END
 
 VAR times3 = make_multiplier(3)
 PRINT("   times3(10):", times3(10))
-PRINT()
+PRINT("")
 
 #######################################
 # 10. BUILT-IN FUNCTIONS
@@ -297,7 +297,7 @@ PRINT("   NULL:", NULL)
 # String to output capture
 VAR captured = PRINT_RET("This is captured output")
 PRINT("   PRINT_RET returns:", captured)
-PRINT()
+PRINT("")
 
 #######################################
 # 11. COMPLEX EXAMPLE: DATA PROCESSING
@@ -379,7 +379,7 @@ WHILE j < LEN(student_results) THEN
     VAR j = j + 1
 END
 PRINT("   Class Average:", class_average)
-PRINT()
+PRINT("")
 
 #######################################
 # 12. FILE OPERATIONS (RUN example)
@@ -389,7 +389,7 @@ PRINT("12. FILE OPERATIONS:")
 PRINT("   Can use RUN() to execute another JhayScript file")
 VAR filename = "another_program.jhay"
 PRINT("   Example: RUN(" + filename + ")")
-PRINT()
+PRINT("")
 
 #######################################
 # 13. DEMONSTRATING LIMITATIONS
@@ -409,7 +409,7 @@ PRINT("   h) Lists use '/' for access (unconventional)")
 # Demonstrate list access syntax
 VAR demo = [10, 20, 30]
 PRINT("   List access: demo/1 =", demo/1)
-PRINT()
+PRINT("")
 
 #######################################
 # 14. PERFORMANCE TEST
@@ -435,7 +435,7 @@ END
 
 PRINT("   fib(10) =", fib(10))
 PRINT("   (fib(30) would be slow due to recursion)")
-PRINT()
+PRINT("")
 
 #######################################
 # 15. INTERACTIVE EXAMPLE
@@ -447,7 +447,7 @@ PRINT("   > x * 2")
 PRINT("   10")
 VAR loop_msg = "Loop:"
 PRINT("   > FOR i = 0 TO 3 THEN PRINT(" + loop_msg + ", i) END")
-PRINT()
+PRINT("")
 
 #######################################
 # CONCLUSION

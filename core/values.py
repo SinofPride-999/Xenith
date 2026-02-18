@@ -400,13 +400,25 @@ class BuiltInFunction(BaseFunction):
     #####################################
 
     def execute_print(self, exec_ctx):
-        value = exec_ctx.symbol_table.get('value')
-        if value is not None:
-            print(str(value))
+        # Get all arguments that were passed
+        args = []
+        i = 0
+        while True:
+            arg = exec_ctx.symbol_table.get(f'value{i}' if i > 0 else 'value')
+            if arg is None:
+                break
+            args.append(str(arg))
+            i += 1
+
+        # Join all arguments with space and print
+        if args:
+            print(" ".join(args))
         else:
-            print()  # Print empty line if no value
+            print()
         return RTResult().success(Number.null)
-    execute_print.arg_names = ['value']  # This requires 1 argument
+
+    # Update arg_names to support multiple arguments
+    execute_print.arg_names = ['value']  # This will be extended dynamically
 
     def execute_print_ret(self, exec_ctx):
         return RTResult().success(String(str(exec_ctx.symbol_table.get('value'))))
