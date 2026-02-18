@@ -376,9 +376,18 @@ class BuiltInFunction(BaseFunction):
         method_name = f'execute_{self.name}'
         method = getattr(self, method_name, self.no_visit_method)
 
-        res.register(self.check_and_populate_args(method.arg_names, args, exec_ctx))
-        if res.should_return():
-            return res
+        # For print function, handle multiple arguments
+        if self.name == 'print':
+            # Populate args with numbered keys for multiple arguments
+            for i, arg in enumerate(args):
+                arg_name = f'value{i}' if i > 0 else 'value'
+                arg.set_context(exec_ctx)
+                exec_ctx.symbol_table.set(arg_name, arg)
+        else:
+            # Regular argument checking for other functions
+            res.register(self.check_and_populate_args(method.arg_names, args, exec_ctx))
+            if res.should_return():
+                return res
 
         return_value = res.register(method(exec_ctx))
         if res.should_return():
