@@ -306,12 +306,15 @@ PRINT()
 PRINT("11. COMPLEX EXAMPLE: STUDENT GRADE PROCESSING")
 
 # Student records
-VAR students = [
-    ["Alice", 85, ["Math", "Science"]],
-    ["Bob", 62, ["History"]],
-    ["Charlie", 95, ["Math", "Art", "Music"]],
-    ["Diana", 78, ["Science", "History"]]
-]
+VAR students = []
+VAR student1 = ["Alice", 85, ["Math", "Science"]]
+VAR student2 = ["Bob", 62, ["History"]]
+VAR student3 = ["Charlie", 95, ["Math", "Art", "Music"]]
+VAR student4 = ["Diana", 78, ["Science", "History"]]
+APPEND(students, student1)
+APPEND(students, student2)
+APPEND(students, student3)
+APPEND(students, student4)
 
 # Function to process student data
 FUN process_students(student_list, passing_score)
