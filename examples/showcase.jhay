@@ -278,7 +278,7 @@ PRINT("10. BUILT-IN FUNCTIONS:")
 
 # Type checking
 PRINT("   IS_NUM(42):", IS_NUM(42))
-PRINT("   IS_STR("hello"):", IS_STR("hello"))
+PRINT("   IS_STR(" + "hello" + "):", IS_STR("hello"))
 PRINT("   IS_LIST([1,2,3]):", IS_LIST([1, 2, 3]))
 PRINT("   IS_FUN(double):", IS_FUN(double))
 
