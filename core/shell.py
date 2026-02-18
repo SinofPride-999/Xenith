@@ -2,23 +2,60 @@
 # INTERACTIVE SHELL MODULE
 # Implements the REPL (Read-Eval-Print Loop) for JhayScript.
 # Allows users to interactively execute code and see immediate results.
-# Useful for testing and learning the language.
+# Only shows output from PRINT statements, not internal return values.
 #######################################
 
 import sys
 sys.path.append('./core')
 from main import run
 
-while True:
-    text = input('basic > ')
-    if text.strip() == "":
-        continue
-    result, error = run('<stdin>', text)
+def run_interactive():
+    print("JhayScript Interactive Shell")
+    print("Type 'exit()' to quit")
+    print("=" * 40)
 
-    if error:
-        print(error.as_string())
-    elif result:
-        if hasattr(result, 'elements') and len(result.elements) == 1:
-            print(repr(result.elements[0]))
-        else:
-            print(repr(result))
+    while True:
+        try:
+            text = input('jhay > ')
+            if text.strip() == "":
+                continue
+            if text.strip() == "exit()":
+                print("Goodbye!")
+                break
+
+            result, error = run('<stdin>', text)
+
+            if error:
+                print(error.as_string())
+            # Don't print the result - only output from PRINT statements appears
+
+        except KeyboardInterrupt:
+            print("\nGoodbye!")
+            break
+        except Exception as e:
+            print(f"Error: {e}")
+
+def run_file(filename):
+    try:
+        with open(filename, 'r') as f:
+            script = f.read()
+
+        print(f"Running: {filename}")
+        print("=" * 50)
+
+        result, error = run(filename, script)
+
+        if error:
+            print(error.as_string())
+        # Don't print the result - only output from PRINT statements appears
+
+    except FileNotFoundError:
+        print(f"Error: File '{filename}' not found")
+    except Exception as e:
+        print(f"Error: {e}")
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        run_file(sys.argv[1])
+    else:
+        run_interactive()
