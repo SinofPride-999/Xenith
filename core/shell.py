@@ -1,3 +1,10 @@
+#######################################
+# INTERACTIVE SHELL MODULE
+# Implements the REPL (Read-Eval-Print Loop) for JhayScript.
+# Allows users to interactively execute code and see immediate results.
+# Useful for testing and learning the language.
+#######################################
+
 import sys
 sys.path.append('./core')
 from main import run
