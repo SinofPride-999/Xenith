@@ -321,37 +321,62 @@ FUN process_students(student_list, passing_score)
     VAR results = []
     VAR total_score = 0
 
-    FOR i = 0 TO LEN(student_list) THEN
+    VAR i = 0
+    WHILE i < LEN(student_list) THEN
         VAR student = student_list/i
         VAR name = student/0
         VAR score = student/1
         VAR subjects = student/2
 
-        VAR status = IF score >= passing_score THEN "PASS" ELSE "FAIL"
-        VAR grade = IF score >= 90 THEN "A"
-                    ELIF score >= 80 THEN "B"
-                    ELIF score >= 70 THEN "C"
-                    ELIF score >= 60 THEN "D"
-                    ELSE "F"
-                    END
+        # Determine status
+        VAR status = "FAIL"
+        IF score >= passing_score THEN
+            VAR status = "PASS"
+        END
 
-        APPEND(results, [name, score, grade, status, LEN(subjects)])
+        # Determine grade
+        VAR grade = "F"
+        IF score >= 90 THEN
+            VAR grade = "A"
+        END
+        IF score >= 80 AND score < 90 THEN
+            VAR grade = "B"
+        END
+        IF score >= 70 AND score < 80 THEN
+            VAR grade = "C"
+        END
+        IF score >= 60 AND score < 70 THEN
+            VAR grade = "D"
+        END
+
+        # Create student record
+        VAR student_record = [name, score, grade, status, LEN(subjects)]
+        APPEND(results, student_record)
+
+        # Update total score
         VAR total_score = total_score + score
+        VAR i = i + 1
     END
 
+    # Calculate average
     VAR average = total_score / LEN(student_list)
 
-    RETURN [results, average]
+    # Return results and average
+    VAR final_result = [results, average]
+    RETURN final_result
 END
 
+# Process the students
 VAR processed = process_students(students, 65)
 VAR student_results = processed/0
 VAR class_average = processed/1
 
 PRINT("   Student Results:")
-FOR i = 0 TO LEN(student_results) THEN
-    VAR s = student_results/i
+VAR j = 0
+WHILE j < LEN(student_results) THEN
+    VAR s = student_results/j
     PRINT("     " + s/0 + ": Score=" + s/1 + ", Grade=" + s/2 + ", " + s/3 + ", Subjects=" + s/4)
+    VAR j = j + 1
 END
 PRINT("   Class Average:", class_average)
 PRINT()
