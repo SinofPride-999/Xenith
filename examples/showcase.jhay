@@ -261,12 +261,12 @@ VAR squared = map(numbers, FUN(x) -> x * x)
 PRINT("   map(numbers, square):", squared)
 
 # Return function from function
-FUN make_multiplier(factor)
-    FUN multiplier(x) -> x * factor
-    RETURN multiplier
-END
+FUN multiply_by_2(x) -> x * 2
+FUN multiply_by_3(x) -> x * 3
+FUN multiply_by_4(x) -> x * 4
 
-VAR times3 = make_multiplier(3)
+# Then use them directly
+VAR times3 = multiply_by_3
 PRINT("   times3(10):", times3(10))
 PRINT("")
 
@@ -375,7 +375,12 @@ PRINT("   Student Results:")
 VAR j = 0
 WHILE j < LEN(student_results) THEN
     VAR s = student_results/j
-    PRINT("     " + s/0 + ": Score=" + s/1 + ", Grade=" + s/2 + ", " + s/3 + ", Subjects=" + s/4)
+    VAR output = "     " + s/0
+    VAR output = output + ": Score=" + PRINT_RET(s/1)
+    VAR output = output + ", Grade=" + PRINT_RET(s/2)
+    VAR output = output + ", " + s/3
+    VAR output = output + ", Subjects=" + PRINT_RET(s/4)
+    PRINT(output)
     VAR j = j + 1
 END
 PRINT("   Class Average:", class_average)
