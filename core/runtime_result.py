@@ -1,5 +1,8 @@
 #######################################
-# RUNTIME RESULT
+# RUNTIME RESULT MODULE
+# Manages the execution state during interpretation including return values,
+# errors, and loop control (continue/break). Enables proper handling of
+# control flow at runtime.
 #######################################
 
 class RTResult:
