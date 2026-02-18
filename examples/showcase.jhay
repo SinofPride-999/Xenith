@@ -17,7 +17,10 @@ PRINT()
 PRINT("1. BASIC FEATURES:")
 PRINT("   - Comments start with #")
 PRINT("   - PRINT() displays output")
-PRINT("   - String concatenation: "Hello" + " " + "World"")
+VAR part1 = "Hello"
+VAR part2 = " "
+VAR part3 = "World"
+PRINT("   - String concatenation: " + part1 + part2 + part3)
 PRINT()
 
 #######################################
