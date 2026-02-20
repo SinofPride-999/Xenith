@@ -10,7 +10,7 @@ from pathlib import Path
 
 # Add core to path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from main import run
+from core.main import run
 
 class TestResult:
     def __init__(self, name):
