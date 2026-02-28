@@ -82,11 +82,25 @@ class Lexer:
             elif self.current_char == ':':
                 tokens.append(Token(TT_COLON, pos_start=self.pos))
                 self.advance()
-            elif self.current_char == '!':
+            elif self.current_char == '!' and self.peek() == '=':
+                # Handle != (not equals)
                 token, error = self.make_not_equals()
                 if error:
                     return [], error
                 tokens.append(token)
+            elif self.current_char == '!' and self.peek() != '=':
+                tokens.append(Token(TT_KEYWORD, '!', pos_start=self.pos))
+                self.advance()
+            elif self.current_char == '&' and self.peek() == '&':
+                pos_start = self.pos.copy()
+                self.advance()  # advance past first &
+                self.advance()  # advance past second &
+                tokens.append(Token(TT_KEYWORD, '&&', pos_start, self.pos))
+            elif self.current_char == '|' and self.peek() == '|':
+                pos_start = self.pos.copy()
+                self.advance()  # advance past first |
+                self.advance()  # advance past second |
+                tokens.append(Token(TT_KEYWORD, '||', pos_start, self.pos))
             elif self.current_char == '=':
                 tokens.append(self.make_equals())
             elif self.current_char == '<':
