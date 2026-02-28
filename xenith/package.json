@@ -1,0 +1,25 @@
+{
+  "name": "xenith",
+  "displayName": "Xenith",
+  "description": "A modern C-like language designed for simplicity and clarity.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.109.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "xenith",
+      "aliases": ["Xenith", "xenith"],
+      "extensions": [".xen"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "xenith",
+      "scopeName": "source.xenith",
+      "path": "./syntaxes/xenith.tmLanguage.json"
+    }]
+  }
+}
