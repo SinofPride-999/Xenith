@@ -119,6 +119,13 @@ class Lexer:
         tokens.append(Token(TT_EOF, pos_start=self.pos))
         return tokens, None
 
+    # look at next character without advancing
+    def peek(self):
+        peek_idx = self.pos.idx + 1
+        if peek_idx < len(self.text):
+            return self.text[peek_idx]
+        return None
+
     def make_number(self):
         num_str = ''
         dot_count = 0
