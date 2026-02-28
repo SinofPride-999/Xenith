@@ -36,8 +36,21 @@ TT_NEWLINE = 'NEWLINE'
 TT_EOF = 'EOF'
 
 KEYWORDS = [
-    'VAR', 'AND', 'OR', 'NOT', 'IF', 'ELIF', 'ELSE', 'FOR', 'TO', 'STEP',
-    'WHILE', 'FUN', 'RETURN', 'CONTINUE', 'BREAK',
+    'spawn',
+    '&&',
+    '||',
+    '!',
+    'when',
+    'orwhen',
+    'otherwise',
+    'for',
+    'to',
+    'step',
+    'while',
+    'function',
+    'release',
+    'skip',
+    'stop',       
 ]
 
 class Token:

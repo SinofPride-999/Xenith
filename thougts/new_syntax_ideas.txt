@@ -1,0 +1,17 @@
+old keywords  => new keywords
+
+VAR            =>       spawn
+AND            =>       &&
+ OR             =>       ||
+ NOT           =>       !
+ IF               =>        when
+ ELIF           =>        orwhen
+ ELSE          =>        otherwise
+ FOR            =>       for
+ TO               =>       to
+ STEP           =>       step
+WHILE          =>       while
+ FUN              =>      function
+ RETURN       =>     release
+ CONTINUE   =>     skip
+ BREAK          =>    stop
