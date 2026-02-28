@@ -1,6 +1,6 @@
 #######################################
-# FILE RUNNER FOR JHAYSCRIPT
-# Run a JhayScript file directly
+# FILE RUNNER FOR Xenith
+# Run a Xenith file directly
 #######################################
 
 import sys

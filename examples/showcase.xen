@@ -1,5 +1,5 @@
 #######################################
-# JHAYSCRIPT LANGUAGE SHOWCASE
+# Xenith LANGUAGE SHOWCASE
 # A comprehensive demonstration of syntax, features, and capabilities
 # Using {} block syntax instead of THEN/END
 #######################################
@@ -9,7 +9,7 @@
 #######################################
 
 PRINT("=" * 50)
-PRINT("JHAYSCRIPT LANGUAGE SHOWCASE")
+PRINT("Xenith LANGUAGE SHOWCASE")
 PRINT("=" * 50)
 PRINT("")
 
@@ -34,7 +34,7 @@ VAR temperature = -5
 PRINT("   Numbers: " + PRINT_RET(age) + " " + PRINT_RET(pi) + " " + PRINT_RET(temperature))
 
 # Strings
-VAR name = "JhayScript"
+VAR name = "Xenith"
 VAR greeting = "Hello, " + name + "!"
 VAR multiline = "This is a\nmultiline string"
 PRINT("   Strings: " + greeting)
@@ -396,7 +396,7 @@ PRINT("")
 #######################################
 
 PRINT("12. FILE OPERATIONS:")
-PRINT("   Can use RUN() to execute another JhayScript file")
+PRINT("   Can use RUN() to execute another Xenith file")
 VAR filename = "another_program.jhay"
 PRINT("   Example: RUN(" + filename + ")")
 PRINT("")
@@ -472,7 +472,7 @@ PRINT("")
 
 PRINT("=" * 50)
 PRINT("SHOWCASE COMPLETE")
-PRINT("JhayScript Features Demonstrated:")
+PRINT("Xenith Features Demonstrated:")
 PRINT("  ✓ Variables and data types")
 PRINT("  ✓ Arithmetic and comparisons")
 PRINT("  ✓ Control flow (IF/ELIF/ELSE with {})")

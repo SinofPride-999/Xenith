@@ -1,6 +1,6 @@
 #######################################
 # TEST RUNNER MODULE
-# Runs all JhayScript tests and reports results
+# Runs all Xenith tests and reports results
 #######################################
 
 import sys
@@ -31,7 +31,7 @@ class TestRunner:
 
     def run_all(self):
         print("\n" + "=" * 60)
-        print("JHAYSCRIPT TEST SUITE")
+        print("Xenith TEST SUITE")
         print("=" * 60)
 
         for name, test_func in self.tests:
@@ -89,7 +89,7 @@ def assert_error(error, expected_type, message=""):
         raise AssertionError(f"{message}\nExpected error type {expected_type}, got {type(error).__name__}")
 
 def run_jhay_script(filename, source=None):
-    """Run a JhayScript file and return (result, error)"""
+    """Run a Xenith file and return (result, error)"""
     if source is None:
         with open(filename, 'r') as f:
             source = f.read()

@@ -1,6 +1,6 @@
 #######################################
 # INTERACTIVE SHELL MODULE
-# Implements the REPL (Read-Eval-Print Loop) for JhayScript.
+# Implements the REPL (Read-Eval-Print Loop) for Xenith.
 # Allows users to interactively execute code and see immediate results.
 # Only shows output from PRINT statements, not internal return values.
 #######################################
@@ -10,7 +10,7 @@ sys.path.append('./core')
 from main import run
 
 def run_interactive():
-    print("JhayScript Interactive Shell")
+    print("Xenith Interactive Shell")
     print("Type 'exit()' to quit")
     print("=" * 40)
 

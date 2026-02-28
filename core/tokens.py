@@ -1,6 +1,6 @@
 #######################################
 # TOKEN DEFINITION MODULE
-# Defines all token types used in JhayScript (operators, keywords, literals, etc.)
+# Defines all token types used in Xenith (operators, keywords, literals, etc.)
 # and the Token class which represents lexical units with position information.
 # Serves as the bridge between the lexer and parser.
 #######################################

@@ -1,6 +1,6 @@
 #######################################
 # ABSTRACT SYNTAX TREE NODES MODULE
-# Defines all AST node types for JhayScript language constructs
+# Defines all AST node types for Xenith language constructs
 # (expressions, statements, control flow, function definitions, etc.).
 # Each node stores relevant tokens and maintains position information
 # for error reporting and code generation.

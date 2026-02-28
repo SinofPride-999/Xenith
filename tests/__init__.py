@@ -1,4 +1,4 @@
-# Test suite for JhayScript
+# Test suite for Xenith
 from .test_basic import test_basic
 from .test_variables import test_variables
 from .test_arithmetic import test_arithmetic

@@ -1,6 +1,6 @@
 #######################################
 # MAIN EXECUTION MODULE
-# Entry point for JhayScript program execution. Initializes the global
+# Entry point for Xenith program execution. Initializes the global
 # symbol table with built-in functions and constants. Orchestrates the
 # compilation pipeline: lexing → parsing → interpretation.
 #######################################

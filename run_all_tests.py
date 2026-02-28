@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #######################################
-# RUN ALL JHAYSCRIPT TESTS
+# RUN ALL Xenith TESTS
 #######################################
 
 import sys
@@ -20,7 +20,7 @@ from tests.test_errors import test_errors
 
 if __name__ == "__main__":
     print("\n" + "=" * 60)
-    print("RUNNING ALL JHAYSCRIPT TESTS")
+    print("RUNNING ALL Xenith TESTS")
     print("=" * 60)
 
     tests = [

@@ -1,6 +1,6 @@
 #######################################
 # ERROR HANDLING MODULE
-# Defines the error hierarchy for JhayScript including lexical errors,
+# Defines the error hierarchy for Xenith including lexical errors,
 # syntax errors, and runtime errors with traceback support.
 # Provides formatted error messages with arrow pointers to source code.
 #######################################
