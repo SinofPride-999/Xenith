@@ -1,0 +1,4 @@
+# Comment
+VAR x = 5
+FUN add(a, b) -> a + b
+PRINT( add(x, 10) )
