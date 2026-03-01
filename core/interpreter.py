@@ -120,7 +120,7 @@ class Interpreter:
 
         if node.op_tok.type == TT_MINUS:
             number, error = number.multed_by(Number(-1))
-        elif node.op_tok.matches(TT_KEYWORD, 'NOT'):
+        elif node.op_tok.matches(TT_KEYWORD, '!'):
             number, error = number.notted()
 
         if error:
