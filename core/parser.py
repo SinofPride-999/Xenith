@@ -146,7 +146,7 @@ class Parser:
         if res.error:
             return res.failure(InvalidSyntaxError(
                 self.current_tok.pos_start, self.current_tok.pos_end,
-                "Expected 'release', 'skip', 'stop', 'spawn', 'when', 'for', 'while', 'function', int, float, identifier, '+', '-', '(', '[' or '!'"
+                "Expected 'release', 'skip', 'stop', 'spawn', 'when', 'for', 'while', 'method', int, float, identifier, '+', '-', '(', '[' or '!'"
             ))
         return res.success(expr)
 
@@ -185,7 +185,7 @@ class Parser:
         if res.error:
             return res.failure(InvalidSyntaxError(
                 self.current_tok.pos_start, self.current_tok.pos_end,
-                "Expected 'spawn', 'when', 'for', 'while', 'function', int, float, identifier, '+', '-', '(', '[' or '!'"
+                "Expected 'spawn', 'when', 'for', 'while', 'method', int, float, identifier, '+', '-', '(', '[' or '!'"
             ))
 
         return res.success(node)
@@ -209,7 +209,7 @@ class Parser:
         if res.error:
             return res.failure(InvalidSyntaxError(
                 self.current_tok.pos_start, self.current_tok.pos_end,
-                "Expected int, float, identifier, '+', '-', '(', '[', 'when', 'for', 'while', 'function' or '!'"
+                "Expected ']', 'spawn', 'when', 'for', 'while', 'method', int, float, identifier, '+', '-', '(', '[' or '!'"
             ))
 
         return res.success(node)
@@ -256,7 +256,7 @@ class Parser:
                 if res.error:
                     return res.failure(InvalidSyntaxError(
                         self.current_tok.pos_start, self.current_tok.pos_end,
-                        "Expected ')', 'spawn', 'when', 'for', 'while', 'function', int, float, identifier, '+', '-', '(', '[' or '!'"
+                        "Expected ')', 'spawn', 'when', 'for', 'while', 'method', int, float, identifier, '+', '-', '(', '[' or '!'"
                     ))
 
                 while self.current_tok.type == TT_COMMA:
@@ -337,7 +337,7 @@ class Parser:
                 return res
             return res.success(while_expr)
 
-        elif tok.matches(TT_KEYWORD, 'function'):
+        elif tok.matches(TT_KEYWORD, 'method'):
             func_def = res.register(self.func_def())
             if res.error:
                 return res
@@ -345,7 +345,7 @@ class Parser:
 
         return res.failure(InvalidSyntaxError(
             tok.pos_start, tok.pos_end,
-            "Expected int, float, identifier, '+', '-', '(', '[', 'when', 'for', 'while', 'function'"
+            "Expected int, float, identifier, '+', '-', '(', '[', 'when', 'for', 'while', 'method'"
         ))
 
     def list_expr(self):
@@ -370,7 +370,7 @@ class Parser:
             if res.error:
                 return res.failure(InvalidSyntaxError(
                     self.current_tok.pos_start, self.current_tok.pos_end,
-                    "Expected ']', 'spawn', 'when', 'for', 'while', 'function', int, float, identifier, '+', '-', '(', '[' or '!'"
+                    "Expected ']', 'spawn', 'when', 'for', 'while', 'method', int, float, identifier, '+', '-', '(', '[' or '!'"
                 ))
 
             while self.current_tok.type == TT_COMMA:
@@ -426,7 +426,7 @@ class Parser:
         # Parse ELIF clauses
         cases = [(condition, body, False)]
 
-        while self.current_tok.matches(TT_KEYWORD, 'orwhen'):
+        while self.current_tok.matches(TT_KEYWORD, 'or when'):
             res.register_advancement()
             self.advance()
 
@@ -541,7 +541,7 @@ class Parser:
         if not self.current_tok.matches(TT_KEYWORD, 'to'):
             return res.failure(InvalidSyntaxError(
                 self.current_tok.pos_start, self.current_tok.pos_end,
-                "Expected 'TO'"
+                "Expected 'to'"
             ))
 
         res.register_advancement()
@@ -603,10 +603,10 @@ class Parser:
     def func_def(self):
         res = ParseResult()
 
-        if not self.current_tok.matches(TT_KEYWORD, 'function'):
+        if not self.current_tok.matches(TT_KEYWORD, 'method'):
             return res.failure(InvalidSyntaxError(
                 self.current_tok.pos_start, self.current_tok.pos_end,
-                "Expected 'function'"
+                "Expected 'method'"
             ))
 
         res.register_advancement()

@@ -37,21 +37,21 @@ TT_EOF = 'EOF'
 
 # New keywords mapping
 KEYWORDS = [
-    'spawn',      # was VAR
-    '&&',         # was AND
-    '||',         # was OR
-    '!',          # was NOT
-    'when',       # was IF
-    'orwhen',     # was ELIF
-    'otherwise',  # was ELSE
-    'for',        # was FOR
-    'to',         # was TO
-    'step',       # was STEP
-    'while',      # was WHILE
-    'function',   # was FUN
-    'release',    # was RETURN
-    'skip',       # was CONTINUE
-    'stop',       # was BREAK
+    'spawn',
+    '&&',
+    '||',
+    '!',
+    'when',
+    'or when',
+    'otherwise',
+    'for',
+    'to',
+    'step',
+    'while',
+    'method',
+    'release',
+    'skip',
+    'stop',
 ]
 
 

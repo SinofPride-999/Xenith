@@ -31,6 +31,7 @@ class Lexer:
 
     def make_tokens(self):
         tokens = []
+        line_count = 1
 
         while self.current_char != None:
             if self.current_char in ' \t':
@@ -45,7 +46,12 @@ class Lexer:
             elif self.current_char in LETTERS:
                 tokens.append(self.make_identifier())
             elif self.current_char == '"':
-                tokens.append(self.make_string())
+                token = self.make_string()
+                tokens.append(token)
+                # Debug: print strings around line 479
+                if line_count > 475 and line_count < 485:
+                    print(f"DEBUG LINE {
+                          line_count}: String token: {token.value}")
             elif self.current_char == '+':
                 tokens.append(Token(TT_PLUS, pos_start=self.pos))
                 self.advance()
@@ -124,7 +130,7 @@ class Lexer:
         tokens.append(Token(TT_EOF, pos_start=self.pos))
         return tokens, None
 
-    # Add a peek method to look at the next character without advancing
+    # Peek method to look at the next character without advancing
     def peek(self):
         peek_idx = self.pos.idx + 1
         if peek_idx < len(self.text):
@@ -153,7 +159,8 @@ class Lexer:
         string_val = ''
         pos_start = self.pos.copy()
         escape_character = False
-        self.advance()
+        self.advance()  # Skip the opening quote
+        print(f"DEBUG: Entering string at position {pos_start.idx}")  # Debug
 
         escape_characters = {
             'n': '\n',
@@ -164,15 +171,21 @@ class Lexer:
             if escape_character:
                 string_val += escape_characters.get(
                     self.current_char, self.current_char)
+                escape_character = False
             else:
                 if self.current_char == '\\':
                     escape_character = True
                 else:
                     string_val += self.current_char
             self.advance()
-            escape_character = False
 
-        self.advance()
+        if self.current_char != '"':
+            # String was not closed properly
+            print(f"DEBUG: String not closed properly")  # Debug
+            return Token(TT_STRING, string_val, pos_start, self.pos)
+
+        self.advance()  # Skip the closing quote
+        print(f"DEBUG: String ended, value: {string_val}")  # Debug
         return Token(TT_STRING, string_val, pos_start, self.pos)
 
     def make_identifier(self):
@@ -182,6 +195,35 @@ class Lexer:
         while self.current_char != None and self.current_char in LETTERS_DIGITS + '_':
             id_str += self.current_char
             self.advance()
+
+        # Check for multi-word keywords
+        if id_str == 'or' and self.current_char == ' ':
+            # Peek ahead to see if next word is 'when'
+            temp_pos = self.pos.idx
+            temp_char = self.current_char
+            # Skip spaces
+            while temp_char == ' ':
+                temp_pos += 1
+                if temp_pos < len(self.text):
+                    temp_char = self.text[temp_pos]
+                else:
+                    break
+
+            # Check if next word is 'when'
+            if temp_char in LETTERS:
+                word_start = temp_pos
+                word = ''
+                while temp_pos < len(self.text) and self.text[temp_pos] in LETTERS_DIGITS + '_':
+                    word += self.text[temp_pos]
+                    temp_pos += 1
+                if word == 'when':
+                    # Found 'or when' keyword
+                    # Consume the space and 'when'
+                    self.advance()  # consume space
+                    self.advance()  # start of 'when'
+                    for _ in range(len('when') - 1):
+                        self.advance()
+                    return Token(TT_KEYWORD, 'or when', pos_start, self.pos)
 
         tok_type = TT_KEYWORD if id_str in KEYWORDS else TT_IDENTIFIER
         return Token(tok_type, id_str, pos_start, self.pos)
