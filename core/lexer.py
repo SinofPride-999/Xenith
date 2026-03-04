@@ -160,7 +160,6 @@ class Lexer:
         pos_start = self.pos.copy()
         escape_character = False
         self.advance()  # Skip the opening quote
-        print(f"DEBUG: Entering string at position {pos_start.idx}")  # Debug
 
         escape_characters = {
             'n': '\n',
@@ -181,11 +180,9 @@ class Lexer:
 
         if self.current_char != '"':
             # String was not closed properly
-            print(f"DEBUG: String not closed properly")  # Debug
             return Token(TT_STRING, string_val, pos_start, self.pos)
 
         self.advance()  # Skip the closing quote
-        print(f"DEBUG: String ended, value: {string_val}")  # Debug
         return Token(TT_STRING, string_val, pos_start, self.pos)
 
     def make_identifier(self):
