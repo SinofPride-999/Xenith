@@ -9,6 +9,7 @@ from tokens import *
 from values import Number, String, List, Function
 from runtime_result import RTResult
 
+
 class Interpreter:
     def visit(self, node, context):
         method_name = f'visit_{type(node).__name__}'
@@ -22,12 +23,14 @@ class Interpreter:
 
     def visit_NumberNode(self, node, context):
         return RTResult().success(
-            Number(node.tok.value).set_context(context).set_pos(node.pos_start, node.pos_end)
+            Number(node.tok.value).set_context(
+                context).set_pos(node.pos_start, node.pos_end)
         )
 
     def visit_StringNode(self, node, context):
         return RTResult().success(
-            String(node.tok.value).set_context(context).set_pos(node.pos_start, node.pos_end)
+            String(node.tok.value).set_context(
+                context).set_pos(node.pos_start, node.pos_end)
         )
 
     def visit_ListNode(self, node, context):
@@ -40,7 +43,8 @@ class Interpreter:
                 return res
 
         return res.success(
-            List(elements).set_context(context).set_pos(node.pos_start, node.pos_end)
+            List(elements).set_context(context).set_pos(
+                node.pos_start, node.pos_end)
         )
 
     def visit_VarAccessNode(self, node, context):
@@ -100,9 +104,9 @@ class Interpreter:
             result, error = left.get_comparison_lte(right)
         elif node.op_tok.type == TT_GTE:
             result, error = left.get_comparison_gte(right)
-        elif node.op_tok.matches(TT_KEYWORD, 'AND'):
+        elif node.op_tok.matches(TT_KEYWORD, '&&'):
             result, error = left.anded_by(right)
-        elif node.op_tok.matches(TT_KEYWORD, 'OR'):
+        elif node.op_tok.matches(TT_KEYWORD, '||'):
             result, error = left.ored_by(right)
 
         if error:
@@ -120,7 +124,7 @@ class Interpreter:
 
         if node.op_tok.type == TT_MINUS:
             number, error = number.multed_by(Number(-1))
-        elif node.op_tok.matches(TT_KEYWORD, 'NOT'):
+        elif node.op_tok.matches(TT_KEYWORD, '!'):
             number, error = number.notted()
 
         if error:
@@ -183,7 +187,8 @@ class Interpreter:
             return res
 
         if node.step_value_node:
-            step_value = res.register(self.visit(node.step_value_node, context))
+            step_value = res.register(
+                self.visit(node.step_value_node, context))
             if res.should_return():
                 return res
         else:
@@ -192,9 +197,9 @@ class Interpreter:
         i = start_value.value
 
         if step_value.value >= 0:
-            condition = lambda: i < end_value.value
+            def condition(): return i < end_value.value
         else:
-            condition = lambda: i > end_value.value
+            def condition(): return i > end_value.value
 
         while condition():
             context.symbol_table.set(node.var_name_tok.value, Number(i))
@@ -214,7 +219,8 @@ class Interpreter:
 
         return res.success(
             Number.null if node.should_return_null else
-            List(elements).set_context(context).set_pos(node.pos_start, node.pos_end)
+            List(elements).set_context(context).set_pos(
+                node.pos_start, node.pos_end)
         )
 
     def visit_WhileNode(self, node, context):
@@ -243,7 +249,8 @@ class Interpreter:
 
         return res.success(
             Number.null if node.should_return_null else
-            List(elements).set_context(context).set_pos(node.pos_start, node.pos_end)
+            List(elements).set_context(context).set_pos(
+                node.pos_start, node.pos_end)
         )
 
     def visit_FuncDefNode(self, node, context):
@@ -252,7 +259,8 @@ class Interpreter:
         func_name = node.var_name_tok.value if node.var_name_tok else None
         body_node = node.body_node
         arg_names = [arg_name.value for arg_name in node.arg_name_toks]
-        func_value = Function(func_name, body_node, arg_names, node.should_auto_return).set_context(context).set_pos(node.pos_start, node.pos_end)
+        func_value = Function(func_name, body_node, arg_names, node.should_auto_return).set_context(
+            context).set_pos(node.pos_start, node.pos_end)
 
         if node.var_name_tok:
             context.symbol_table.set(func_name, func_value)
@@ -282,7 +290,8 @@ class Interpreter:
 
         if res.should_return():
             return res
-        return_value = return_value.copy().set_pos(node.pos_start, node.pos_end).set_context(context)
+        return_value = return_value.copy().set_pos(
+            node.pos_start, node.pos_end).set_context(context)
         return res.success(return_value)
 
     def visit_ReturnNode(self, node, context):

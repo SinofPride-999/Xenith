@@ -1,6 +1,6 @@
 #######################################
 # TOKEN DEFINITION MODULE
-# Defines all token types used in Xenith (operators, keywords, literals, etc.)
+# Defines all token types used in JhayScript (operators, keywords, literals, etc.)
 # and the Token class which represents lexical units with position information.
 # Serves as the bridge between the lexer and parser.
 #######################################
@@ -35,10 +35,25 @@ TT_ARROW = 'ARROW'
 TT_NEWLINE = 'NEWLINE'
 TT_EOF = 'EOF'
 
+# New keywords mapping
 KEYWORDS = [
-    'VAR', 'AND', 'OR', 'NOT', 'IF', 'ELIF', 'ELSE', 'FOR', 'TO', 'STEP',
-    'WHILE', 'FUN', 'RETURN', 'CONTINUE', 'BREAK',
+    'spawn',      # was VAR
+    '&&',         # was AND
+    '||',         # was OR
+    '!',          # was NOT
+    'when',       # was IF
+    'orwhen',     # was ELIF
+    'otherwise',  # was ELSE
+    'for',        # was FOR
+    'to',         # was TO
+    'step',       # was STEP
+    'while',      # was WHILE
+    'function',   # was FUN
+    'release',    # was RETURN
+    'skip',       # was CONTINUE
+    'stop',       # was BREAK
 ]
+
 
 class Token:
     def __init__(self, type_, value=None, pos_start=None, pos_end=None):

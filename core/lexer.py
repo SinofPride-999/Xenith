@@ -15,6 +15,7 @@ DIGITS = '0123456789'
 LETTERS = string.ascii_letters
 LETTERS_DIGITS = LETTERS + DIGITS
 
+
 class Lexer:
     def __init__(self, fn, text):
         self.fn = fn
@@ -25,7 +26,8 @@ class Lexer:
 
     def advance(self):
         self.pos.advance(self.current_char)
-        self.current_char = self.text[self.pos.idx] if self.pos.idx < len(self.text) else None
+        self.current_char = self.text[self.pos.idx] if self.pos.idx < len(
+            self.text) else None
 
     def make_tokens(self):
         tokens = []
@@ -82,11 +84,28 @@ class Lexer:
             elif self.current_char == ':':
                 tokens.append(Token(TT_COLON, pos_start=self.pos))
                 self.advance()
-            elif self.current_char == '!':
+            elif self.current_char == '!' and self.peek() == '=':
+                # Handle != (not equals)
                 token, error = self.make_not_equals()
                 if error:
                     return [], error
                 tokens.append(token)
+            elif self.current_char == '!' and self.peek() != '=':
+                # Handle ! as NOT operator
+                tokens.append(Token(TT_KEYWORD, '!', pos_start=self.pos))
+                self.advance()
+            elif self.current_char == '&' and self.peek() == '&':
+                # Handle && operator
+                pos_start = self.pos.copy()
+                self.advance()  # advance past first &
+                self.advance()  # advance past second &
+                tokens.append(Token(TT_KEYWORD, '&&', pos_start, self.pos))
+            elif self.current_char == '|' and self.peek() == '|':
+                # Handle || operator
+                pos_start = self.pos.copy()
+                self.advance()  # advance past first |
+                self.advance()  # advance past second |
+                tokens.append(Token(TT_KEYWORD, '||', pos_start, self.pos))
             elif self.current_char == '=':
                 tokens.append(self.make_equals())
             elif self.current_char == '<':
@@ -104,6 +123,13 @@ class Lexer:
 
         tokens.append(Token(TT_EOF, pos_start=self.pos))
         return tokens, None
+
+    # Add a peek method to look at the next character without advancing
+    def peek(self):
+        peek_idx = self.pos.idx + 1
+        if peek_idx < len(self.text):
+            return self.text[peek_idx]
+        return None
 
     def make_number(self):
         num_str = ''
@@ -136,7 +162,8 @@ class Lexer:
 
         while self.current_char != None and (self.current_char != '"' or escape_character):
             if escape_character:
-                string_val += escape_characters.get(self.current_char, self.current_char)
+                string_val += escape_characters.get(
+                    self.current_char, self.current_char)
             else:
                 if self.current_char == '\\':
                     escape_character = True
